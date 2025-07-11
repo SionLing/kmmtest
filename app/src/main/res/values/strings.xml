@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Picture Card Gallery</string>
+    <string name="main_page_title">Picture Gallery</string>
+    <string name="about_page_title">About Me</string>
+    <string name="about_description">Welcome to Picture Card Gallery - a simple and elegant way to browse your favorite images. This app demonstrates modern Android development with Jetpack Compose.</string>
+    <string name="developer_name">Developer Name</string>
+    <string name="back_button">Back</string>
+</resources>

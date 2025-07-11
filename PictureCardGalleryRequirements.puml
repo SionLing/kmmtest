@@ -1,0 +1,47 @@
+@startuml
+
+title Picture Card Gallery App - Feature Overview
+
+package "Main Features" {
+  class MainPage {
+    - Two-column grid of picture cards
+    - Thumbnail images
+    - Tap to open full image
+  }
+  class ImageDetailPage {
+    - Full size image view
+    - Back navigation
+  }
+  class AboutMePage {
+    - App creator/team info
+    - Accessible from main page
+  }
+  class AdditionalFunctions {
+    - Navigation
+    - Responsive design
+    - Optional: Settings, upload, favorites
+  }
+}
+
+MainPage --> ImageDetailPage : Tap card
+MainPage --> AboutMePage : Menu/button
+
+package "User Flow" {
+  class User {
+    - Opens app
+    - Taps card
+    - Views image
+    - Returns to main
+    - Accesses About Me
+  }
+}
+
+User --> MainPage
+User --> ImageDetailPage : Tap card
+User --> AboutMePage : Menu/button
+
+note right: Technical: Android/Kotlin, RecyclerView, CardView, Jetpack Navigation, Glide/Coil
+note bottom: Future: Upload, Favorites, Settings
+
+@enduml
+
