@@ -1,0 +1,41 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log/OS files
+*.log
+*.swp
+.DS_Store
+
+# Android Studio
+.idea/
+*.iml
+
+# APKs
+*.apk
+*.ap_*
+
+# Keystore files
+*.jks
+*.keystore
+
+# Mac
+__MACOSX/
+
+# Misc
+*.orig
+*.rej
+
+# Kotlin/Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Generated files
+app/build/
+

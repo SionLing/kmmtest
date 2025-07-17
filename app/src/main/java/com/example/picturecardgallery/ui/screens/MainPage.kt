@@ -8,13 +8,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.picturecardgallery.R
 import com.example.picturecardgallery.data.PictureData
 import com.example.picturecardgallery.ui.components.PictureCard
+import androidx.compose.ui.graphics.Color
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -26,13 +25,13 @@ fun MainPage(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(stringResource(R.string.main_page_title))
+                    Text("Picture Gallery")
                 },
                 actions = {
                     IconButton(onClick = onAboutClick) {
                         Icon(
                             imageVector = Icons.Default.Info,
-                            contentDescription = stringResource(R.string.about_page_title)
+                            contentDescription = "About Me"
                         )
                     }
                 }
@@ -52,9 +51,19 @@ fun MainPage(
             items(PictureData.sampleImages) { picture ->
                 PictureCard(
                     picture = picture,
-                    onClick = { onImageClick(picture.id) }
+                    onClick = { onImageClick(picture.id) },
+                    descriptionColor = Color.Gray
                 )
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MainPagePreview() {
+    MainPage(
+        onImageClick = {},
+        onAboutClick = {}
+    )
 }

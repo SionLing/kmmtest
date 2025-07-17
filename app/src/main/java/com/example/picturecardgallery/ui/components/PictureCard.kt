@@ -10,16 +10,19 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.picturecardgallery.data.PictureCard
+import androidx.compose.ui.graphics.Color
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PictureCard(
     picture: PictureCard,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    descriptionColor: Color = MaterialTheme.colorScheme.onSurfaceVariant
 ) {
     Card(
         onClick = onClick,
@@ -60,7 +63,7 @@ fun PictureCard(
                     Text(
                         text = picture.description,
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        color = descriptionColor,
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -68,4 +71,18 @@ fun PictureCard(
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PictureCardPreview() {
+    PictureCard(
+        picture = PictureCard(
+            id = 1,
+            title = "Sample Title",
+            description = "Sample description for preview purposes.",
+            imageUrl = "https://via.placeholder.com/300"
+        ),
+        onClick = {}
+    )
 }

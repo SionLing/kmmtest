@@ -9,11 +9,9 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.picturecardgallery.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -24,13 +22,13 @@ fun AboutMePage(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(stringResource(R.string.about_page_title))
+                    Text("About Me")
                 },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = stringResource(R.string.back_button)
+                            contentDescription = "Back"
                         )
                     }
                 }
@@ -49,7 +47,7 @@ fun AboutMePage(
             Spacer(modifier = Modifier.height(32.dp))
             
             Text(
-                text = stringResource(R.string.app_name),
+                text = "Picture Card Gallery",
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
@@ -64,7 +62,7 @@ fun AboutMePage(
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     Text(
-                        text = stringResource(R.string.about_description),
+                        text = "Welcome to Picture Card Gallery - a simple and elegant way to browse your favorite images. This app demonstrates modern Android development with Jetpack Compose.",
                         style = MaterialTheme.typography.bodyLarge,
                         textAlign = TextAlign.Center
                     )
@@ -86,7 +84,7 @@ fun AboutMePage(
                     )
                     
                     Text(
-                        text = stringResource(R.string.developer_name),
+                        text = "Developer Name",
                         style = MaterialTheme.typography.bodyLarge
                     )
                 }
