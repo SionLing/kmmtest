@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.picturecardgallery.ui.screens.AboutMePage
 import com.example.picturecardgallery.ui.screens.ImageDetailPage
 import com.example.picturecardgallery.ui.screens.MainPage
@@ -46,4 +47,10 @@ fun PictureCardGalleryApp(
             )
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PictureCardGalleryAppPreview() {
+    PictureCardGalleryApp()
 }
