@@ -1,6 +1,7 @@
-package com.example.picturecardgallery.navigation
+package com.x3live.core.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -32,7 +33,7 @@ class AppNavigator(override val navController: NavController) : NavigationAction
 
 @Composable
 fun rememberAppNavigator(navController: NavHostController): AppNavigator {
-    return androidx.compose.runtime.remember(navController) {
+    return remember(navController) {
         AppNavigator(navController)
     }
 }

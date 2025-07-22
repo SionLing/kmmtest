@@ -1,4 +1,4 @@
-package com.example.picturecardgallery.navigation
+package com.x3live.core.navigation
 
 import androidx.navigation.NavController
 

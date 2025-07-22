@@ -3,8 +3,8 @@ package com.example.picturecardgallery.navigation.routes
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
-import com.example.picturecardgallery.navigation.AppRoute
-import com.example.picturecardgallery.navigation.NavigationActions
+import com.x3live.core.navigation.AppRoute
+import com.x3live.core.navigation.NavigationActions
 import com.example.picturecardgallery.ui.screens.AboutMePage
 
 object AboutRoute : AppRoute("about") {

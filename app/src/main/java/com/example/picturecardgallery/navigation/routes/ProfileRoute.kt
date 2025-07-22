@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
-import com.example.picturecardgallery.navigation.AppRoute
-import com.example.picturecardgallery.navigation.NavigationActions
+import com.x3live.core.navigation.AppRoute
+import com.x3live.core.navigation.NavigationActions
 
 object ProfileRoute : AppRoute("profile/{userId}") {
     override fun content(
