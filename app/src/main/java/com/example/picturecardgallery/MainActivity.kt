@@ -12,6 +12,7 @@ import com.example.picturecardgallery.ui.theme.PictureCardGalleryTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
         setContent {
             PictureCardGalleryTheme {
                 Surface(

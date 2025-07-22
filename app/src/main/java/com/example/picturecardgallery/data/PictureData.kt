@@ -1,5 +1,8 @@
 package com.example.picturecardgallery.data
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class PictureCard(
     val id: Int,
     val title: String,
@@ -36,7 +39,7 @@ object PictureData {
         PictureCard(
             id = 5,
             title = "Mountain Lake",
-            imageUrl = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
+            imageUrl = "https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=400&h=300&fit=crop",
             description = "Crystal clear mountain lake"
         ),
         PictureCard(

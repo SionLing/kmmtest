@@ -18,10 +18,29 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="Picture Card Gallery"
-            android:theme="@style/Theme.PictureCardGallery">
+            android:theme="@style/Theme.PictureCardGallery"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            
+            <!-- Deep link support for Picture Gallery -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="picturegallery" 
+                      android:host="gallery.app" />
+            </intent-filter>
+            
+            <!-- HTTP deep link support (optional, for web links) -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" 
+                      android:host="gallery.app" />
             </intent-filter>
         </activity>
     </application>
