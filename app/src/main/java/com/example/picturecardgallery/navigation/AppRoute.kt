@@ -3,11 +3,8 @@ package com.example.picturecardgallery.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
-import com.example.picturecardgallery.ui.screens.AboutMePage
-import com.example.picturecardgallery.ui.screens.ImageDetailPage
-import com.example.picturecardgallery.ui.screens.MainPage
 
-sealed class AppRoute(val route: String) {
+abstract class AppRoute(val route: String) {
     
     abstract fun content(
         entry: NavBackStackEntry,
@@ -16,54 +13,18 @@ sealed class AppRoute(val route: String) {
 
     abstract fun go(navController: NavController, vararg params: Any)
 
-    object MainRoute : AppRoute("main") {
-        override fun content(
-            entry: NavBackStackEntry,
-            navigationActions: NavigationActions
-        ): @Composable () -> Unit = {
-            MainPage(
-                onImageClick = { imageId -> ImageDetailRoute.go(navigationActions.navController, imageId) },
-                onAboutClick = { AboutRoute.go(navigationActions.navController) }
-            )
-        }
-
-        override fun go(navController: NavController, vararg params: Any) {
-            navController.navigate(route)
-        }
-    }
-
-    object AboutRoute : AppRoute("about") {
-        override fun content(
-            entry: NavBackStackEntry,
-            navigationActions: NavigationActions
-        ): @Composable () -> Unit = {
-            AboutMePage(onBackClick = navigationActions::navigateBack)
-        }
-
-        override fun go(navController: NavController, vararg params: Any) {
-            navController.navigate(route)
-        }
-    }
-
-    object ImageDetailRoute : AppRoute("image_detail/{id}") {
-        override fun content(
-            entry: NavBackStackEntry,
-            navigationActions: NavigationActions
-        ): @Composable () -> Unit = {
-            val imageId = entry.arguments?.getString("id")?.toIntOrNull() ?: 0
-            ImageDetailPage(
-                imageId = imageId,
-                onBackClick = navigationActions::navigateBack
-            )
-        }
-
-        override fun go(navController: NavController, vararg params: Any) {
-            val imageId = params.firstOrNull() as? Int ?: 0
-            navController.navigate("image_detail/$imageId")
-        }
+    init {
+        register(this)
     }
 
     companion object {
-        val allRoutes = listOf(MainRoute, AboutRoute, ImageDetailRoute)
+        private val _allRoutes = mutableListOf<AppRoute>()
+        val allRoutes: List<AppRoute> get() = _allRoutes.toList()
+
+        private fun register(route: AppRoute) {
+            if (_allRoutes.none { it.route == route.route }) {
+                _allRoutes.add(route)
+            }
+        }
     }
 }
