@@ -34,6 +34,9 @@ abstract class AppRoute(val route: String) {
 
     abstract fun go(navController: NavController, vararg params: Any)
     
+    // Override to provide deeplink URIs
+    open fun deepLinks(): List<String> = emptyList()
+    
     // Auto-registration happens in init block
     init { register(this) }
     
@@ -170,6 +173,32 @@ object SearchRoute : AppRoute("search?query={query}") {
 }
 ```
 
+### Routes with Deeplinks
+Routes that support deep linking from external sources:
+
+```kotlin
+object ProductRoute : AppRoute("product/{productId}") {
+    override fun content(entry: NavBackStackEntry, navigationActions: NavigationActions) = {
+        val productId = entry.arguments?.getString("productId") ?: ""
+        ProductScreen(
+            productId = productId,
+            onBackClick = navigationActions::navigateBack
+        )
+    }
+    
+    override fun go(navController: NavController, vararg params: Any) {
+        val productId = params.firstOrNull() as? String ?: ""
+        navController.navigate("product/$productId")
+    }
+    
+    override fun deepLinks(): List<String> = listOf(
+        "https://myapp.com/product/{productId}",
+        "myapp://product/{productId}",
+        "android-app://com.example.myapp/product/{productId}"
+    )
+}
+```
+
 ## Navigation Patterns
 
 ### Basic Navigation
@@ -209,6 +238,93 @@ if (user.isLoggedIn) {
     LoginRoute.go(navController)
 }
 ```
+
+## Deeplink Configuration
+
+### Android Manifest Setup
+Add intent filters to your main activity in `AndroidManifest.xml`:
+
+```xml
+<activity
+    android:name=".MainActivity"
+    android:exported="true">
+    
+    <!-- Default launcher intent -->
+    <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+    
+    <!-- HTTPS deeplinks -->
+    <intent-filter android:autoVerify="true">
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="https" android:host="picturegallery.app" />
+    </intent-filter>
+    
+    <!-- Custom scheme deeplinks -->
+    <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="picturegallery" />
+    </intent-filter>
+    
+</activity>
+```
+
+### Deeplink Types
+
+#### 1. HTTPS Deeplinks
+```kotlin
+override fun deepLinks(): List<String> = listOf(
+    "https://myapp.com/product/{id}",
+    "https://www.myapp.com/product/{id}"
+)
+```
+
+#### 2. Custom Scheme Deeplinks  
+```kotlin
+override fun deepLinks(): List<String> = listOf(
+    "myapp://product/{id}",
+    "myscheme://section/{section}"
+)
+```
+
+#### 3. Android App Links
+```kotlin
+override fun deepLinks(): List<String> = listOf(
+    "android-app://com.example.myapp/product/{id}"
+)
+```
+
+### Testing Deeplinks
+
+#### Using ADB
+```bash
+# Test HTTPS deeplink
+adb shell am start -W -a android.intent.action.VIEW -d "https://picturegallery.app/image/123" com.example.picturecardgallery
+
+# Test custom scheme deeplink  
+adb shell am start -W -a android.intent.action.VIEW -d "picturegallery://image/123" com.example.picturecardgallery
+
+# Test profile deeplink
+adb shell am start -W -a android.intent.action.VIEW -d "https://picturegallery.app/profile/user456" com.example.picturecardgallery
+```
+
+#### From Browser
+Simply navigate to the URL in a mobile browser:
+- `https://picturegallery.app/image/123`
+- `https://picturegallery.app/profile/user456`
+
+### Deeplink Best Practices
+
+1. **Use HTTPS for production** - Better security and app verification
+2. **Include multiple schemes** - Fallback options for different scenarios  
+3. **Handle missing parameters** - Always provide defaults for route parameters
+4. **Validate parameters** - Check parameter format and ranges
+5. **Test thoroughly** - Test all deeplink patterns across devices
 
 ## Advanced Features
 

@@ -12,6 +12,15 @@ abstract class AppRoute(val route: String) {
     ): @Composable () -> Unit
 
     abstract fun go(navController: NavController, vararg params: Any)
+    
+    /**
+     * Override this method to provide custom deeplink URIs for this route.
+     * Default implementation auto-generates deeplinks from route path.
+     */
+    open fun deepLinks(): List<String> = listOf(
+        "https://picturegallery.app/$route",
+        "picturegallery://$route"
+    )
 
     init {
         register(this)

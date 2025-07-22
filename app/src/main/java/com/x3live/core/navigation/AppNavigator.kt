@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navDeepLink
 
 class AppNavigator(override val navController: NavController) : NavigationActions {
 
@@ -20,7 +21,12 @@ class AppNavigator(override val navController: NavController) : NavigationAction
             startDestination = "main"
         ) {
             AppRoute.allRoutes.forEach { route ->
-                composable(route = route.route) { entry ->
+                composable(
+                    route = route.route,
+                    deepLinks = route.deepLinks().map { uri ->
+                        navDeepLink { uriPattern = uri }
+                    }
+                ) { entry ->
                     route.content(
                         entry = entry,
                         navigationActions = this@AppNavigator
