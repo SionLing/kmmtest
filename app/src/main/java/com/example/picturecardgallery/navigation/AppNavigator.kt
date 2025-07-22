@@ -7,12 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 
 class AppNavigator(override val navController: NavController) : NavigationActions {
-    
-    init {
-        // Initialize all routes using auto-generated loader
-        RouteLoader.initialize()
-    }
-    
+
     override fun navigateBack() {
         navController.popBackStack()
     }
