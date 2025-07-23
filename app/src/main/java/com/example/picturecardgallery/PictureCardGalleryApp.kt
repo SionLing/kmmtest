@@ -8,7 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
-import com.example.picturecardgallery.navigation.initializeRoutes
+import com.example.picturecardgallery.shared.navigation.initializeRoutes
 import com.x3live.core.navigation.rememberAppNavigator
 
 @Composable

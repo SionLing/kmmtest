@@ -43,20 +43,6 @@
                       android:host="gallery.app" />
             </intent-filter>
         </activity>
-        
-        <!-- Video Player Activity -->
-        <activity
-            android:name=".video.VideoPlayerActivity"
-            android:exported="false"
-            android:label="Video Player"
-            android:theme="@style/Theme.PictureCardGallery"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="unspecified"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
     </application>
 
 </manifest>
