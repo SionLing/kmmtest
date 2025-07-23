@@ -6,7 +6,6 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.activity.compose.BackHandler
 import androidx.compose.ui.unit.dp
 import com.x3live.core.ui.throttledClick
@@ -19,7 +18,6 @@ fun VideoPlayerScreen(
     videoTitle: String,
     onBackClick: () -> Unit
 ) {
-    val context = LocalContext.current
     val throttledBackClick = throttledClick(onBackClick)
     
     BackHandler {
@@ -62,7 +60,6 @@ fun VideoPlayerScreen(
                 // Video information section
                 VideoInfoSection(
                     title = videoTitle,
-                    videoUrl = videoUrl,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp)
@@ -82,7 +79,6 @@ fun VideoPlayerScreen(
 @Composable
 private fun VideoInfoSection(
     title: String,
-    videoUrl: String,
     modifier: Modifier = Modifier
 ) {
     Card(
