@@ -11,14 +11,14 @@ Simple wrapper for onClick functions that prevents rapid clicking with global 30
 Button(onClick = { doSomething() })
 
 // After
-Button(onClick = throttled { doSomething() })
+Button(onClick = throttledClick { doSomething() })
 ```
 
 ### Store throttled function
 ```kotlin
 @Composable
 fun MyComponent() {
-    val handleClick = throttled { doSomething() }
+    val handleClick = throttledClick { doSomething() }
     
     Button(onClick = handleClick) {
         Text("Click Me")
@@ -36,13 +36,13 @@ fun MyComponent() {
 
 **Back button:**
 ```kotlin
-val throttledBackClick = throttled(onBackClick)
+val throttledBackClick = throttledClick(onBackClick)
 BackHandler { throttledBackClick() }
 ```
 
 **Navigation:**
 ```kotlin
-IconButton(onClick = throttled(onAboutClick)) {
+IconButton(onClick = throttledClick(onAboutClick)) {
     Icon(Icons.Default.Info, "About")
 }
 ```
@@ -50,13 +50,13 @@ IconButton(onClick = throttled(onAboutClick)) {
 **List items:**
 ```kotlin
 PictureCard(
-    onClick = throttled { onImageClick(picture.id) }
+    onClick = throttledClick { onImageClick(picture.id) }
 )
 ```
 
 **Direct usage:**
 ```kotlin
-Card(onClick = throttled { handleCardClick() })
+Card(onClick = throttledClick { handleCardClick() })
 ```
 
 That's it! Just one simple function to wrap all your click handlers. 🎉

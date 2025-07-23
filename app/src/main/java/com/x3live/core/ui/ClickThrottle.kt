@@ -23,10 +23,10 @@ private object ClickThrottle {
 
 /**
  * Simple wrapper for onClick functions that prevents rapid clicking
- * Usage: Button(onClick = throttled { doSomething() })
+ * Usage: Button(onClick = throttledClick { doSomething() })
  */
 @Composable
-fun throttled(onClick: () -> Unit): () -> Unit {
+fun throttledClick(onClick: () -> Unit): () -> Unit {
     return remember(onClick) {
         {
             if (ClickThrottle.shouldAllowClick()) {
