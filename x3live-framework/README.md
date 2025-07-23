@@ -1,4 +1,4 @@
-# Core Navigation Library
+# X3Live Framework
 
 A reusable Android Compose navigation framework that provides:
 
@@ -64,7 +64,7 @@ class AppNavigator(override val navController: NavController) : NavigationAction
 In your app's `build.gradle`:
 ```gradle
 dependencies {
-    implementation project(':core-navigation')
+    implementation project(':x3live-framework')
 }
 ```
 
@@ -120,4 +120,4 @@ AppRoute.configureDeeplinks(
 
 ## License
 
-This library is part of the Picture Card Gallery project.
+This is the X3Live Framework - a reusable Android Compose navigation library.
