@@ -29,10 +29,7 @@ class AppNavigator(override val navController: NavController) : NavigationAction
                         navDeepLink { uriPattern = uri }
                     }
                 ) { entry ->
-                    route.content(
-                        entry = entry,
-                        navigationActions = this@AppNavigator
-                    )()
+                    route.content(entry, this@AppNavigator)()
                 }
             }
         }
@@ -45,3 +42,4 @@ fun rememberAppNavigator(navController: NavHostController): AppNavigator {
         AppNavigator(navController)
     }
 }
+
