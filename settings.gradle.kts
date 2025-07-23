@@ -5,6 +5,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -14,5 +15,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Picture Card Gallery"
-include ':app'
-include ':x3live-framework'
+include(":app")
+include(":x3live-framework")
