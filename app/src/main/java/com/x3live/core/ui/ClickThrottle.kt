@@ -8,7 +8,7 @@ import androidx.compose.runtime.remember
  */
 private object ClickThrottle {
     private var lastClickTime = 0L
-    private const val THROTTLE_TIME_MS = 300L
+    private const val THROTTLE_TIME_MS = 100L
     
     fun shouldAllowClick(): Boolean {
         val now = System.currentTimeMillis()

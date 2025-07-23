@@ -5,7 +5,7 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import com.x3live.core.navigation.AppRoute
 import com.x3live.core.navigation.NavigationActions
-import com.x3live.core.navigation.NavigationThrottle
+import com.x3live.core.navigation.safeNavigate
 import com.example.picturecardgallery.ui.screens.AboutMePage
 
 object AboutRoute : AppRoute("about") {
@@ -18,11 +18,6 @@ object AboutRoute : AppRoute("about") {
     }
 
     override fun go(navController: NavController, vararg params: Any) {
-        if (!NavigationThrottle.canNavigate(route)) return
-        
-        NavigationThrottle.recordNavigation(route)
-        navController.navigate(route) {
-            launchSingleTop = true
-        }
+        navController.safeNavigate(route)
     }
 }
