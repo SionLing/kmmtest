@@ -22,6 +22,7 @@ fun initializeRoutes() {
             "picturegallery" to "gallery.app"
         ))
 
+    // Load route objects
     MainRoute
     AboutRoute
     ImageDetailRoute

@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.example.picturecardgallery.data.PictureData
 import com.example.picturecardgallery.ui.components.PictureCard
 import androidx.compose.ui.graphics.Color
+import com.x3live.core.ui.throttled
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -21,6 +22,7 @@ fun MainPage(
     onImageClick: (Int) -> Unit,
     onAboutClick: () -> Unit
 ) {
+    val throttledAboutClick = throttled(onAboutClick)
     Scaffold(
         topBar = {
             TopAppBar(
@@ -28,7 +30,7 @@ fun MainPage(
                     Text("Picture Gallery")
                 },
                 actions = {
-                    IconButton(onClick = onAboutClick) {
+                    IconButton(onClick = throttledAboutClick) {
                         Icon(
                             imageVector = Icons.Default.Info,
                             contentDescription = "About Me"
@@ -51,7 +53,7 @@ fun MainPage(
             items(PictureData.sampleImages) { picture ->
                 PictureCard(
                     picture = picture,
-                    onClick = { onImageClick(picture.id) },
+                    onClick = throttled { onImageClick(picture.id) },
                     descriptionColor = Color.Gray
                 )
             }

@@ -8,6 +8,8 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.activity.compose.BackHandler
+import com.x3live.core.ui.throttled
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -21,9 +23,14 @@ fun ImageDetailPage(
     onBackClick: () -> Unit
 ) {
     val picture = PictureData.sampleImages.find { it.id == imageId }
+    val throttledBackClick = throttled(onBackClick)
+    
+    BackHandler {
+        throttledBackClick()
+    }
     
     if (picture == null) {
-        onBackClick()
+        throttledBackClick()
         return
     }
     
@@ -34,7 +41,7 @@ fun ImageDetailPage(
                     Text(picture.title)
                 },
                 navigationIcon = {
-                    IconButton(onClick = onBackClick) {
+                    IconButton(onClick = throttledBackClick) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = "Back"
