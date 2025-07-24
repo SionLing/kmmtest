@@ -12,9 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.picturecardgallery.features.gallery.data.PictureData
-import com.example.picturecardgallery.features.gallery.ui.PictureCard
 import androidx.compose.ui.graphics.Color
-import com.x3live.core.ui.throttledClick
+import com.x3live.core.ui.listeners.throttledClick
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -8,7 +8,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.activity.compose.BackHandler
 import androidx.compose.ui.unit.dp
-import com.x3live.core.ui.throttledClick
+import com.x3live.core.ui.listeners.throttledClick
 import com.example.picturecardgallery.features.video.components.YouTubeWebView
 
 @OptIn(ExperimentalMaterial3Api::class)
