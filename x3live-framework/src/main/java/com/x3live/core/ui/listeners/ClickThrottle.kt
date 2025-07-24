@@ -1,4 +1,4 @@
-package com.x3live.core.ui
+package com.x3live.core.ui.listeners
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
