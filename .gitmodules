@@ -1,0 +1,3 @@
+[submodule "x3live-framework"]
+	path = x3live-framework
+	url = https://github.com/ViddioTeam/x3live-framework.git
